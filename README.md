@@ -19,7 +19,7 @@ Require this package with composer:
 
 After updating composer, add the `\Sannis\Pinba\ServiceProvider::class` to the providers array in config/app.php
 
-> If you use a catch-all/fallback route, make sure you load the Debugbar ServiceProvider before your own App ServiceProviders.
+> If you use a catch-all/fallback route, make sure you load the Pinba ServiceProvider before your own App ServiceProviders.
 
 Copy the package config to your local config with the publish command:
 
