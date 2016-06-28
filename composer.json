@@ -9,7 +9,7 @@
       "email": "efimovov@gmail.com"
     }
   ],
-  "version": "0.0.1-dev",
+  "version": "0.0.1",
   "require": {
     "php": ">=5.5.9",
     "illuminate/support": "5.1.*|5.2.*"
