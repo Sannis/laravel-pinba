@@ -11,6 +11,16 @@ Use composer to install:
 
 `composer require Sannis/laravel-pinba`
 
-## Usage
+## Installation
 
-**TBD**
+Require this package with composer:
+
+    composer require sannis/laravel-pinba
+
+After updating composer, add the `\Sannis\Pinba\ServiceProvider::class` to the providers array in config/app.php
+
+> If you use a catch-all/fallback route, make sure you load the Debugbar ServiceProvider before your own App ServiceProviders.
+
+Copy the package config to your local config with the publish command:
+
+    php artisan vendor:publish --provider="\Sannis\Pinba\ServiceProvider"
