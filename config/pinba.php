@@ -19,5 +19,5 @@ return [
      | This is hostname:port string for pinba UDP packets
      |
      */
-    'server' => 'localhost:30002',
+    'server' => '127.0.0.1:30002',
 ];
