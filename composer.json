@@ -1,5 +1,5 @@
 {
-  "name": "Sannis/laravel-pinba",
+  "name": "sannis/laravel-pinba",
   "description": "Pinba integration for Laravel",
   "keywords": ["laravel", "pinba", "profiler", "debug"],
   "license": "MIT",
