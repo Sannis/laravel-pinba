@@ -2,9 +2,6 @@
 
 namespace Sannis\Pinba;
 
-use Illuminate\Routing\Router;
-use Illuminate\Session\SessionManager;
-
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -51,6 +48,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 ini_set('pinba.enabled', false);
             }
         }
+
+        $this->app->singleton('pinba', function ($app) {
+            return new LaravelPinba($app);
+        }
+        );
+        $this->app->alias('pinba', 'Sannis\Pinba\LaravelPinba');
     }
 
     /**
