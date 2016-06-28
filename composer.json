@@ -1,0 +1,25 @@
+{
+  "name": "Sannis/laravel-pinba",
+  "description": "Pinba integration for Laravel",
+  "keywords": ["laravel", "pinba", "profiler", "debug"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oleg efimov",
+      "email": "efimovov@gmail.com"
+    }
+  ],
+  "version": "0.0.1-dev",
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/support": "5.1.*|5.2.*",
+  },
+  "autoload": {
+    "psr-4": {
+      "Sannis\\Pinba\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  }
+}
