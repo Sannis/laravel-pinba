@@ -12,13 +12,23 @@ class LaravelPinba
     protected $app;
 
     /**
-     * @param \Illuminate\Contracts\Foundation\Application $app
+     * Set to true if pinba service is enabled and extension is loaded
+     *
+     * @var bool
      */
-    public function __construct($app = null)
+    protected $enabled;
+
+    /**
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param bool $enabled
+     */
+    public function __construct($app = null, $enabled = false)
     {
         if (!$app) {
             $app = app(); // Fallback when $app is not given
         }
         $this->app = $app;
+
+        $this->enabled = $enabled;
     }
 }

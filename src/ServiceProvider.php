@@ -32,27 +32,39 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $configPath = __DIR__ . '/../config/pinba.php';
         $this->publishes([$configPath => config_path('pinba.php')], 'config');
 
+        /** @var \Illuminate\Config\Repository $config */
+        $config = $this->app['config'];
+
         // If enabled is null, set from the app.debug value
-        $enabled = $this->app['config']->get('pinba.enabled');
+        $enabled = $config->get('pinba.enabled');
         if (is_null($enabled)) {
-            $enabled = $this->app['config']->get('app.debug');
+            $enabled = $config->get('app.debug');
         }
 
+        $extension_loaded = false;
         if (extension_loaded('pinba')) {
+            $extension_loaded = true;
+
             if ($enabled) {
                 ini_set('pinba.enabled', true);
-                ini_set('pinba.server', $this->app['config']->get('pinba.server'));
+                ini_set('pinba.server', $config->get('pinba.server'));
 
-                $this->app['router']->middleware('pinba', HandlePinba::class);
+                /** @var \Illuminate\Routing\Router $router */
+                $router = $this->app['router'];
+                $router->middleware('pinba', Middleware::class);
+
+                /** @var \Illuminate\Foundation\Http\Kernel $kernel */
+                $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
+                $kernel->pushMiddleware(Middleware::class);
             } else {
                 ini_set('pinba.enabled', false);
             }
         }
 
-        $this->app->singleton('pinba', function ($app) {
-            return new LaravelPinba($app);
-        }
-        );
+        $enabled = $enabled && $extension_loaded;
+        $this->app->singleton('pinba', function ($app) use ($enabled) {
+            return new LaravelPinba($app, $enabled);
+        });
         $this->app->alias('pinba', 'Sannis\Pinba\LaravelPinba');
     }
 

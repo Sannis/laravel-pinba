@@ -4,7 +4,7 @@ namespace Sannis\Pinba;
 
 use Closure;
 
-class HandlePinba
+class Middleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,12 @@ class HandlePinba
      */
     public function handle($request, Closure $next)
     {
+        $return = $next($request);
+
         if (extension_loaded('pinba')) {
             pinba_script_name_set($request->route()->getUri());
         }
 
-        return $next($request);
+        return $return;
     }
 }
