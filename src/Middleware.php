@@ -6,6 +6,8 @@ use Closure;
 
 class Middleware
 {
+    const UNKNOWN_SCRIPT_NAME = '<unknown>';
+
     /**
      * Handle an incoming request.
      *
@@ -18,7 +20,14 @@ class Middleware
         $return = $next($request);
 
         if (extension_loaded('pinba')) {
-            pinba_script_name_set($request->route()->getUri());
+            $route = $request->route();
+            if ($route) {
+                $script_name = $route->getUri();
+            } else {
+                $script_name = self::UNKNOWN_SCRIPT_NAME;
+            }
+
+            pinba_script_name_set($script_name);
         }
 
         return $return;
