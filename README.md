@@ -2,14 +2,14 @@
 
 ## Description
 
-Integrates [pinba](http://pinba.org/ "Pinba site")
-with [Laravel](https://laravel.com "Laravel site")
+Integrates [Pinba](http://pinba.org/ "Pinba site")
+with [Laravel](https://laravel.com/ "Laravel site").
 
 ## Installation
 
 Use composer to install:
 
-`composer require Sannis/laravel-pinba`
+    composer require Sannis/laravel-pinba
 
 ## Installation
 
